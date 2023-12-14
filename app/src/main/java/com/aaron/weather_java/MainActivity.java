@@ -1,11 +1,15 @@
 package com.aaron.weather_java;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.aaron.weather_java.adapter.HourlyAdapter;
 import com.aaron.weather_java.database.Database;
@@ -34,4 +38,25 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = this.getMenuInflater();
+        menuInflater.inflate(R.menu.weather_menu, menu);
+
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+
+        if (itemId == R.id.miNextWeekWeather) {
+            this.startActivity(new Intent(this, FutureActivity.class));
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
 }
